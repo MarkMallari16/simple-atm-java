@@ -20,7 +20,8 @@ public class Main {
         System.out.println("2. Deposit");
         System.out.println("3. Withdraw");
         System.out.println("4. Transaction History");
-        System.out.println("5. Logout");
+        System.out.println("5. User Information");
+        System.out.println("6. Logout");
         System.out.print("Enter option: ");
     }
 
@@ -32,8 +33,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         User user1 = new User("Mark", "12345");
-      
-        
+
         ATM atm = new ATM();
 
         String username;
@@ -72,10 +72,12 @@ public class Main {
                     case 2:
                         double deposit;
                         System.out.print("\nEnter deposit amount: ");
+                        while (!input.hasNextDouble()) {
+                            System.out.println("Invalid amount! Please enter a valid number.");
+                            input.next(); 
+                        }
                         deposit = input.nextDouble();
-
                         atm.deposit(deposit);
-
                         System.out.println("\nDeposit Successfully!");
                         break;
                     case 3:
@@ -98,14 +100,48 @@ public class Main {
                     case 4:
                         atm.displayTransactions();
                         break;
-
                     case 5:
+                        user1.displayUserInformation();
+                        int userInfoOption;
+
+                        System.out.println("1. Change username");
+                        System.out.println("2. Change password");
+                        System.out.println("3. Exit");
+                        System.out.print("Your option: ");
+                        userInfoOption = input.nextInt();
+
+                        input.nextLine();
+
+                        if (userInfoOption == 1) {
+                            String newUsername;
+
+                            System.out.println("\nEnter new username: ");
+                            newUsername = input.nextLine();
+
+                            user1.setUsername(newUsername);
+                        } else if (userInfoOption == 2) {
+                            System.out.println("\nEnter current password: ");
+                            String currentPassword = input.nextLine();
+
+                            if (user1.checkPassword(currentPassword)) {
+                                String newPassword;
+
+                                System.out.println("\nEnter new password: ");
+                                newPassword = input.nextLine();
+
+                                user1.setPassword(newPassword);
+                            } else {
+                                System.out.println("\nInvalid current password");
+                            }
+                        }
+                        break;
+                    case 6:
                         System.out.println("\n\nLogging out...");
                         break;
                     default:
-                        System.out.println("Invalid option!");
+                        System.out.println("\nInvalid option!");
                 }
-            } while (option != 5);
+            } while (option != 6);
         } else {
             System.out.println("Invalid username or password");
         }
