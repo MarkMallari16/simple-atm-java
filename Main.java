@@ -60,7 +60,9 @@ public class Main {
 
                 displayATMOptions();
                 if (!input.hasNextInt()) {
+                    divideDash();
                     System.out.println("\nInvalid option! Please enter a number");
+                    divideDash();
                     input.next();
                     displayATMOptions();
                 }
@@ -82,7 +84,7 @@ public class Main {
                         atm.deposit(deposit);
 
                         divideDash();
-                        System.out.println("\nDeposit Successfully!\n");
+                        System.out.println("\n\t\tDeposit Successfully!\n");
                         divideDash();
                         break;
                     case 3:
@@ -95,7 +97,7 @@ public class Main {
                             if (atm.getBalance() >= withdraw) {
                                 atm.withdraw(withdraw);
                                 divideDash();
-                                System.out.println("\nWithdrawal  successfull!\n");
+                                System.out.println("\n\t\tWithdrawal  successfully!\n");
                                 divideDash();
                             } else {
                                 divideDash();
@@ -138,13 +140,13 @@ public class Main {
                                 user1.setUsername(newUsername);
                                 break;
                             case 2:
-                                System.out.println("\nEnter current password: ");
+                                System.out.print("\nEnter current password: ");
                                 String currentPassword = input.nextLine();
 
                                 if (user1.checkPassword(currentPassword)) {
                                     String newPassword;
 
-                                    System.out.println("\nEnter new password: ");
+                                    System.out.print("\nEnter new password: ");
                                     newPassword = input.nextLine();
 
                                     user1.setPassword(newPassword);
@@ -154,10 +156,10 @@ public class Main {
                                 break;
                             case 3:
                                 break;
-                            default: 
+                            default:
                                 System.out.println("Invalid Value!");
                         }
-                        
+
                         break;
                     case 6:
                         System.out.println("\n\nLogging out...");
