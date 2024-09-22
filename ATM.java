@@ -35,10 +35,10 @@ public class ATM {
     }
 
     public void displayTransactions() {
-        System.out.println("\n\nTransaction History");
+        System.out.println("\nTransaction History");
 
         if (transactions.isEmpty()) {
-            System.out.println("No transaction yet");
+            System.out.println("No transaction yet...\n");
         } else {
             for (String transaction : transactions) {
                 System.out.println(transaction);
